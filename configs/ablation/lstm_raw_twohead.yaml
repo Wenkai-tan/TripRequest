@@ -1,0 +1,7 @@
+# Smoke-test config (Step 5): LSTM + raw features + two-head output.
+extends: configs/base.yaml
+model:
+  name: lstm
+  output_mode: two_head
+feature_set: raw
+adjacency: flow

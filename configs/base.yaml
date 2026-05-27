@@ -1,0 +1,47 @@
+# Shared defaults. Ablation configs override individual keys via `extends`.
+
+data:
+  tensor_path: dataset/output/od_15min_tensor.npz   # (T, N, N) + slot_starts
+  splits_path: dataset/output/splits.json           # written by prepare_dataset.ipynb
+  n_zones: 263
+  # WindowLoader residence: 'cpu' (safe for the full multi-month tensor) or
+  # 'cuda' (fastest — keeps the whole tensor in VRAM; use for month-scale pilots).
+  loader_device: cpu
+
+# Forecasting window (fixed across all runs).
+forecast:
+  T_in: 8        # 2 h of history
+  T_out: 4       # 1 h ahead
+  stride: 1
+
+# Default model block; ablation configs override name / output_mode.
+model:
+  name: lstm
+  output_mode: two_head     # two_head | direct
+  hidden_dim: 64
+  num_layers: 2
+  dropout: 0.0
+
+feature_set: stat           # raw | time | stat
+adjacency: flow             # flow | geo | hybrid  (ignored by non-graph models)
+
+# Identical training budget for every model (do not over-tune one).
+training:
+  max_epochs: 50
+  patience: 5               # early stopping on validation loss
+  batch_size: 64            # larger batch -> better GPU utilization
+  lr: 0.001
+  weight_decay: 0.0001
+  grad_clip: 1.0
+
+# two_head loss weights, fixed across all two_head runs.
+loss:
+  lam1: 1.0      # outflow MAE
+  lam2: 1.0      # destination KL
+  lam3: 0.5      # reconstructed-OD MAE
+
+eval:
+  topk: 10
+
+experiments_dir: experiments
+seed: 42

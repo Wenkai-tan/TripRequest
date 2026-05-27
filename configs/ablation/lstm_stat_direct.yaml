@@ -1,0 +1,7 @@
+# Output-mode ablation — LSTM backbone, full feature set, direct OD output.
+extends: configs/base.yaml
+model:
+  name: lstm
+  output_mode: direct
+feature_set: stat
+adjacency: flow

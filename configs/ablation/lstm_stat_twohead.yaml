@@ -1,0 +1,7 @@
+# Architecture ablation — LSTM backbone, full feature set, two-head output.
+extends: configs/base.yaml
+model:
+  name: lstm
+  output_mode: two_head
+feature_set: stat
+adjacency: flow
