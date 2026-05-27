@@ -1,0 +1,33 @@
+data:
+  tensor_path: dataset/output/od_15min_tensor.npz
+  splits_path: dataset/output/splits.json
+  n_zones: 263
+  loader_device: cpu
+forecast:
+  T_in: 8
+  T_out: 4
+  stride: 1
+model:
+  name: lstm
+  output_mode: two_head
+  hidden_dim: 64
+  num_layers: 2
+  dropout: 0.0
+feature_set: stat
+adjacency: flow
+training:
+  max_epochs: 50
+  patience: 5
+  batch_size: 64
+  lr: 0.001
+  weight_decay: 0.0001
+  grad_clip: 1.0
+loss:
+  lam1: 1.0
+  lam2: 1.0
+  lam3: 0.5
+eval:
+  topk: 10
+experiments_dir: experiments
+seed: 42
+config_path: E:\Workspace\NASA_ULI\configs\ablation\lstm_stat_twohead.yaml

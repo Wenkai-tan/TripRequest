@@ -1,0 +1,2 @@
+run_id,model,feature_set,output_mode,seed,val_mae,val_rmse,test_mae,test_rmse,test_masked_mae,test_topK_hit,test_tcs,ood_mae,ood_rmse,train_time_sec,n_params
+lstm_stat_two_head_s42_20260516_163327,lstm,stat,two_head,42,0.11571754852587594,0.3895314603020156,0.11957518016154045,0.4144419546236516,1.1183447509909785,0.31098799138294647,0.9638067560954976,0.11624274353274726,0.39440472393271275,1096.0,124704
